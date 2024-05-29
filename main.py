@@ -1,6 +1,6 @@
 def compute_firsts(productions):
     first = {non_terminal: set() for non_terminal in productions}
-    visited = set()
+    marcados = set()
 
     def compute_first(symbol):
         if symbol in first and first[symbol]:
@@ -9,10 +9,10 @@ def compute_firsts(productions):
         if not symbol.isupper():
             return {symbol}
 
-        if symbol in visited:
+        if symbol in marcados:
             return first[symbol]
 
-        visited.add(symbol)
+        marcados.add(symbol)
 
         result = set()
         for production in productions[symbol]:
@@ -27,7 +27,7 @@ def compute_firsts(productions):
                 else:
                     result.add('e')
         first[symbol] = result
-        visited.remove(symbol)
+        marcados.remove(symbol)
         return result
 
     for non_terminal in productions:
@@ -90,6 +90,13 @@ def main():
         for non_terminal in sorted(follow):
             follow_set = ','.join(sorted(follow[non_terminal]))
             Output.append(f"Follow({non_terminal}) - {{{follow_set}}}")
+
+    for o in Output:
+        print(o)
+
+if __name__ == "__main__":
+    main()
+
 
     for o in Output:
         print(o)
