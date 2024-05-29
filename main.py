@@ -96,10 +96,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-    for o in Output:
-        print(o)
-
-if __name__ == "__main__":
-    main()
